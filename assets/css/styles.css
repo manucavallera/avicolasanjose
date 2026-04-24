@@ -346,7 +346,7 @@ body.dark-theme {
 }
 
 /* Change background header */
-bg-header {
+.bg-header {
   box-shadow: 0 4px 20px hsla(19, 64%, 24%, 0.1);
 }
 
@@ -369,8 +369,9 @@ bg-header {
   }
 
   .nav__list {
-    display: flex; /* Mostrar la lista de navegación como una fila en pantallas más grandes */
-    flex-direction: row; /* Alinear la lista de navegación horizontalmente en pantallas más grandes */
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.5rem;
   }
 
   .nav__toggle {
@@ -378,7 +379,12 @@ bg-header {
   }
 
   .nav__buttons {
-    display: flex; /* Mostrar los botones en una fila en pantallas más grandes */
+    display: flex;
+  }
+
+  .contact-bar__content {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
 }
 
@@ -517,28 +523,28 @@ bg-header {
 }
 
 .about__locations li {
-  margin-bottom: 0.5rem; /* Espaciado entre cada ítem de la lista */
-  color: #333; /* Color de texto para las localidades */
+  margin-bottom: 0.5rem;
+  color: var(--title-color);
 }
 /* Estilo para el texto resaltado */
 .highlight {
   font-weight: bold;
   text-decoration: underline;
-  color: #2c3e50; /* Color oscuro para resaltar */
-  margin-bottom: 1rem; /* Margen inferior para separación */
+  color: var(--title-color);
+  margin-bottom: 1rem;
 }
 
 /* Estilo para la lista de localidades */
 .highlight-list {
-  list-style-type: disc; /* Tipo de viñeta para la lista */
-  padding-left: 1.5rem; /* Espaciado a la izquierda para alinear las viñetas */
-  color: #333; /* Color de texto para las localidades */
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  color: var(--text-color);
 }
 
 .highlight-list li {
-  margin-bottom: 0.5rem; /* Espaciado entre cada ítem de la lista */
+  margin-bottom: 0.5rem;
   font-weight: bold;
-  color: #2c3e50; /* Color oscuro para resaltar */
+  color: var(--title-color);
 }
 
 /*=============== POPULAR ===============*/
@@ -758,8 +764,8 @@ bg-header {
 }
 
 .footer__content {
-  grid-template-columns: repeat(2, max-content);
-  gap: 2.5rem 3.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 2rem;
 }
 
 .footer__title {
@@ -850,19 +856,15 @@ bg-header {
 }
 
 .footer__iframe-container {
-  position: relative;
+  width: 100%;
   overflow: hidden;
-  width: 200%;
-  padding-top: 150%; /* Aspect ratio ajustado para mostrar el mapa completo */
 }
 
 .footer__iframe-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
+  height: 300px;
   border: 0;
+  display: block;
 }
 
 /*=============== SCROLL BAR ===============*/
@@ -953,7 +955,7 @@ bg-header {
     width: 250px;
   }
 
-  .popular_container {
+  .popular__container {
     grid-template-columns: 1fr;
   }
 
@@ -967,6 +969,10 @@ bg-header {
 
   .newsletter__content {
     padding: 3rem 1rem;
+  }
+
+  .footer__content {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -998,7 +1004,7 @@ bg-header {
     width: 280px;
   }
 
-  .popular_container {
+  .popular__container {
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
   }
@@ -1015,13 +1021,17 @@ bg-header {
     padding: 4rem 1rem;
   }
 
-  nav__close {
+  .nav__close {
     visibility: hidden;
   }
 }
 
 /* For large devices (desktops) */
 @media screen and (min-width: 1024px) {
+  .container {
+    margin-inline: auto;
+  }
+
   :root {
     --biggest-font-size: 3rem;
     --h1-font-size: 2rem;
@@ -1048,7 +1058,7 @@ bg-header {
     width: 300px;
   }
 
-  .popular_container {
+  .popular__container {
     grid-template-columns: repeat(3, 1fr);
     justify-content: center;
   }
