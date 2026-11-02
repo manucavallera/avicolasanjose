@@ -118,32 +118,29 @@ const contactForm = document.getElementById("contact-form"),
   contactMessage = document.getElementById("contact-message");
 const sendEmail = (e) => {
   e.preventDefault();
-  //serviceID-templateID - #form - publicKey
-  emailjs
-    .sendForm(
-      "service_jc9mwdj",
-      "template_pgi9txj",
-      "#contact-form",
-      "Oxbh5HRszWIpji6PC"
-    )
-    .then(
-      () => {
-        //Show sent message
-        contactMessage.textContent = "Mensaje enviado correctamente!";
+  // FormSubmit: envía el formulario directo al correo de Juli
+  fetch("https://formsubmit.co/ajax/avicoladonjose1@gmail.com", {
+    method: "POST",
+    headers: { Accept: "application/json" },
+    body: new FormData(contactForm),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error();
+      //Show sent message
+      contactMessage.textContent = "Mensaje enviado correctamente!";
 
-        //Remove message after five seconds
-        setTimeout(() => {
-          contactMessage.textContent = "";
-        }, 5000);
+      //Remove message after five seconds
+      setTimeout(() => {
+        contactMessage.textContent = "";
+      }, 5000);
 
-        //Clear input fields
-        contactForm.reset();
-      },
-      () => {
-        //Show error message
-        contactMessage.textContent = "Message not set (service error)";
-      }
-    );
+      //Clear input fields
+      contactForm.reset();
+    })
+    .catch(() => {
+      //Show error message
+      contactMessage.textContent = "No se pudo enviar. Escribinos por WhatsApp.";
+    });
 };
 contactForm.addEventListener("submit", sendEmail);
 
